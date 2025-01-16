@@ -27,7 +27,7 @@ public class Cliente implements Serializable {
 	private long numCartaoCredito;	
 	private String enderecoCliente;	
 	
-	private List<EntregaEndereco> entregaEndereco = new ArrayList<>();
+	
 	
 	public Cliente(String nome, Integer telefone,String cpfOuCnpj,long numCartaoCredito,String enderecoCliente) {
 		super();		
@@ -89,16 +89,8 @@ public class Cliente implements Serializable {
 
 	public void setEnderecoCliente(String enderecoCliente) {
 		this.enderecoCliente = enderecoCliente;
-	}
+	}	
 	
-	// Endereço de entrega
-	public List<EntregaEndereco> getEntregaEndereco() {
-		return entregaEndereco;
-	}
-
-	public void setEntregaEndereco(List<EntregaEndereco> entregaEndereco) {
-		this.entregaEndereco = entregaEndereco;
-	}
 
 	@Override
 	public int hashCode() {

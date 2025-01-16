@@ -1,0 +1,25 @@
+POC - Aplicativo de Entrega Local por motociclitas (motoboys)
+
+deliverBoy
+
+ - Resumo -
+
+Dor:Cliente precisa entregar alguma encomenda que possua
+as dimensões possíveis para que um motoboy leve em viagens de até 100km usando um Bauleto de 80kg de volume.
+
+Solução: usando o aplicativo deliverboy o cliente faz o cadastro
+na plataforma, e aciona algum motoboy disponível para entrega, a
+plataforma recebe uma porcentagem por cada entrega e o motoboy outra porcentagem do valor para cada entrega.
+
+Persistência: Cadastro do cliente, do motoboy, do endereço de origem e de entrega, dados da entrega e do produto.
+
+Calculo do serviço
+Rota + peso + custos operacionais = valor do Serviço.
+
+Restrições:
+Produto precisa estar embalado e idenfiticado.
+
+A moto do motoboy contratado precisa ser cadastrada com todos
+os dados e foto da moto e do motoboy via fileSystem.
+
+

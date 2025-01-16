@@ -1,7 +1,10 @@
 package com.deliverboy.deliverboy.domain.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.Objects;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,10 +15,7 @@ import jakarta.persistence.Table;
 @Table(name="pagamento")
 @Entity
 public class Pagamento implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,16 +23,18 @@ public class Pagamento implements Serializable {
 	
 	private Cliente cliente;
 	private Entrega entrega;
-	private Double valorMotoboy;
-	private Double valorEmpresa;
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy/MM/dd'T'HH:mm:ss'Z'",timezone = "GMT")
+	private Instant dataPagamento;
+	private Double pagamentoMotoboy;
+	private Double pagamentoEmpresa;
 	
 	
-	public Pagamento(Cliente cliente, Entrega entrega, Double valorMotoboy, Double valorEmpresa) {
+	public Pagamento(Cliente cliente, Entrega entrega,Instant dataPagamento,Double pagamentoMotoboy, Double pagamentoEmpresa) {
 		super();
 		this.cliente = cliente;
 		this.entrega = entrega;
-		this.valorMotoboy = valorMotoboy;
-		this.valorEmpresa = valorEmpresa;
+		this.pagamentoMotoboy = pagamentoMotoboy;
+		this.pagamentoEmpresa = pagamentoEmpresa;
 	}
 
 
@@ -60,23 +62,33 @@ public class Pagamento implements Serializable {
 	}
 
 
-	public Double getValorMotoboy() {
-		return valorMotoboy;
+	public Instant getDataPagamento() {
+		return dataPagamento;
 	}
 
 
-	public void setValorMotoboy(Double valorMotoboy) {
-		this.valorMotoboy = valorMotoboy;
+	public void setDataPagamento(Instant dataPagamento) {
+		this.dataPagamento = dataPagamento;
 	}
 
 
-	public Double getValorEmpresa() {
-		return valorEmpresa;
+	public Double getPagamentoMotoboy() {
+		return pagamentoMotoboy;
 	}
 
 
-	public void setValorEmpresa(Double valorEmpresa) {
-		this.valorEmpresa = valorEmpresa;
+	public void setPagamentoMotoboy(Double pagamentoMotoboy) {
+		this.pagamentoMotoboy = pagamentoMotoboy;
+	}
+
+
+	public Double getPagamentoEmpresa() {
+		return pagamentoEmpresa;
+	}
+
+
+	public void setPagamentoEmpresa(Double pagamentoEmpresa) {
+		this.pagamentoEmpresa = pagamentoEmpresa;
 	}
 
 

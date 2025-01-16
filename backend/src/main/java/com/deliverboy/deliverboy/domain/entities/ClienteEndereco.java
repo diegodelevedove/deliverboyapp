@@ -10,16 +10,16 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
-@Table(name="entrega_endereco")
+@Table(name="cliente_endereco")
 @Entity
-public class EntregaEndereco implements Serializable {
-	
+public class ClienteEndereco implements Serializable {
+		
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+		
 	@NotNull
 	private String logradouro;
 	@NotNull
@@ -32,7 +32,7 @@ public class EntregaEndereco implements Serializable {
 	
 	
 	
-	public EntregaEndereco(long id,String endereco,String logradouro,String cep,String bairro,String pais) {
+	public ClienteEndereco(long id,String endereco,String logradouro,String cep,String bairro,String pais) {
 		super();
 		this.id = id;		
 		this.logradouro = logradouro;
@@ -99,7 +99,7 @@ public class EntregaEndereco implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EntregaEndereco other = (EntregaEndereco) obj;
+		ClienteEndereco other = (ClienteEndereco) obj;
 		return id == other.id;
 	}
 	
