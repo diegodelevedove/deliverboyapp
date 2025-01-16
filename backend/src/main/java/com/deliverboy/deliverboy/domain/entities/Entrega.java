@@ -1,30 +1,51 @@
 package com.deliverboy.deliverboy.domain.entities;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 @Table(name="entrega")
 @Entity
 public class Entrega implements Serializable {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull
 	private Double valor;
-	private DateTimeFormatter dataEntrega;
+	
+	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy/MM/dd'T'HH:mm:ss'Z'",timezone = "GMT")
+	private Instant dataEntrega;
+	
+	@NotNull
 	private String motoboy;
+	@NotNull
 	private Double tamanho;
+	@NotNull	
 	private Double peso;
+	@NotNull
 	private Boolean status;
 	
-	public Entrega(Double valor, DateTimeFormatter dataEntrega, String motoboy, Double tamanho, Double peso,
+	
+	private Cliente cliente;
+	private EntregaEndereco enderecoEntrega;
+	
+	
+	public Entrega(Double valor, Instant dataEntrega, String motoboy, Double tamanho, Double peso,
 			Boolean status) {
 		super();
 		this.valor = valor;
@@ -47,11 +68,11 @@ public class Entrega implements Serializable {
 		this.valor = valor;
 	}
 
-	public DateTimeFormatter getDataEntrega() {
+	public Instant getDataEntrega() {
 		return dataEntrega;
 	}
 
-	public void setDataEntrega(DateTimeFormatter dataEntrega) {
+	public void setDataEntrega(Instant dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
 
