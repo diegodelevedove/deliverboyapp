@@ -1,10 +1,19 @@
-package com.deliverboy.deliverboy.domain;
+package com.deliverboy.deliverboy.domain.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+
+@Entity
+@Table(name="cliente")
 public class Cliente implements Serializable {
 
 	/**
@@ -12,20 +21,24 @@ public class Cliente implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String nome;
 	private Integer telefone;
 	private String cpfOuCnpj;	
 	private long numCartaoCredito;	
+	private String enderecoCliente;	
 	
 	private List<EntregaEndereco> entregaEndereco = new ArrayList<>();
 	
-	public Cliente(String nome, Integer telefone,String cpfOuCnpj,long numCartaoCredito) {
+	public Cliente(String nome, Integer telefone,String cpfOuCnpj,long numCartaoCredito,String enderecoCliente) {
 		super();		
 		this.nome = nome;
 		this.telefone = telefone;
 		this.cpfOuCnpj = (cpfOuCnpj);		
 		this.numCartaoCredito = numCartaoCredito;
+		this.setEnderecoCliente(enderecoCliente);
 	}
 	
 	public long getId() {
@@ -65,10 +78,29 @@ public class Cliente implements Serializable {
 	public long getNumCartaoCredito() {
 		return numCartaoCredito;
 	}
+		
 
 
 	public void setNumCartaoCredito(long numCartaoCredito) {
 		this.numCartaoCredito = numCartaoCredito;
+	}
+	
+
+	public String getEnderecoCliente() {
+		return enderecoCliente;
+	}
+
+	public void setEnderecoCliente(String enderecoCliente) {
+		this.enderecoCliente = enderecoCliente;
+	}
+	
+	// Endereço de entrega
+	public List<EntregaEndereco> getEntregaEndereco() {
+		return entregaEndereco;
+	}
+
+	public void setEntregaEndereco(List<EntregaEndereco> entregaEndereco) {
+		this.entregaEndereco = entregaEndereco;
 	}
 
 	@Override
