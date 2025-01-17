@@ -5,10 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
@@ -27,6 +32,9 @@ public class Cliente implements Serializable {
 	private long numCartaoCredito;	
 	private String enderecoCliente;	
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "cliente")
+	List<Entrega> entrega = new ArrayList<>();
 	
 	
 	public Cliente(String nome, Integer telefone,String cpfOuCnpj,long numCartaoCredito,String enderecoCliente) {
