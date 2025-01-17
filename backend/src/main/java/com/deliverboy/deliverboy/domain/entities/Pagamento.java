@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
+import com.deliverboy.deliverboy.domain.enums.PagamentoEnum;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Entity;
@@ -27,6 +28,7 @@ public class Pagamento implements Serializable {
 	private Instant dataPagamento;
 	private Double pagamentoMotoboy;
 	private Double pagamentoEmpresa;
+	private PagamentoEnum statusPagamento;
 	
 	
 	public Pagamento(Cliente cliente, Entrega entrega,Instant dataPagamento,Double pagamentoMotoboy, Double pagamentoEmpresa) {
