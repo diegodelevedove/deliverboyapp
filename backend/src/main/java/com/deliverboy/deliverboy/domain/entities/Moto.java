@@ -1,11 +1,32 @@
 package com.deliverboy.deliverboy.domain.entities;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
-public class Moto {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="moto")
+public class Moto implements Serializable{
 	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String placa;
 	private String modelo;
 	private String cor;
@@ -13,10 +34,12 @@ public class Moto {
 	private String documento;
 	private String fotoCaminhoImagem;
 	
-	private Motoboy motoboy;
+	@ManyToOne
+	@JoinColumn(name="moto_id")
+	private List<Motoboy> motoboy = new ArrayList<>();
 
-	public Moto(String placa, String modelo, String cor, Date ano, String documento, String fotoCaminhoImagem,
-			Motoboy motoboy) {
+	public Moto(String placa, String modelo, String cor, Date ano, String documento, String fotoCaminhoImagem
+			) {
 		super();
 		this.placa = placa;
 		this.modelo = modelo;
@@ -24,7 +47,7 @@ public class Moto {
 		this.ano = ano;
 		this.documento = documento;
 		this.fotoCaminhoImagem = fotoCaminhoImagem;
-		this.motoboy = motoboy;
+		
 	}
 
 	public String getPlaca() {

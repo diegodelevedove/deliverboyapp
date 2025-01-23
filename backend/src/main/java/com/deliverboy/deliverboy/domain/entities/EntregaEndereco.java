@@ -3,10 +3,13 @@ package com.deliverboy.deliverboy.domain.entities;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 
@@ -27,12 +30,14 @@ public class EntregaEndereco implements Serializable {
 	@NotNull
 	private String bairro;
 	@NotNull
-	private String pais;	
+	private String pais;
+	
 	private Integer numeroResidencia;
 	
+	@OneToOne(mappedBy = "enderecoEntrega" ,cascade = CascadeType.ALL)
+	private Cliente cliente;
 	
-	
-	public EntregaEndereco(long id,String endereco,String logradouro,String cep,String bairro,String pais) {
+	public EntregaEndereco(long id,String logradouro,String cep,String bairro,String pais) {
 		super();
 		this.id = id;		
 		this.logradouro = logradouro;

@@ -4,19 +4,23 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 
 @Table(name="motoboy")
 @Entity
-public class Motoboy implements Serializable {
-
+public class Motoboy implements Serializable {	
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
 	private String nome;
@@ -28,6 +32,9 @@ public class Motoboy implements Serializable {
 	private Double remuneracao;
 	private String numeroConta;
 	
+	@JsonIgnore
+	@OneToMany(mappedBy = "moto")	
+	private Moto moto;
 	
 	public Motoboy(String nome, String email, String telefone, Date dataNasc, String cpf, String identidade,
 			Double remuneracao, String numeroConta) {
