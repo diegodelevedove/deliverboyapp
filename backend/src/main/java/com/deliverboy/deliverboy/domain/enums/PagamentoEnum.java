@@ -5,8 +5,7 @@ public enum PagamentoEnum {
 	Pago(0),
 	Pendente(1);
 	
-	private int code;
-	
+	private int code;	
 	
 	private PagamentoEnum(int code){
 		this.code = code;
@@ -24,7 +23,7 @@ public enum PagamentoEnum {
 				return value;
 			}			
 		}
-		throw new IllegalArgumentException("Invalid OrderStatus code");
+		throw new IllegalArgumentException("Codigo pagamento inválido");
 	}
 	
 	

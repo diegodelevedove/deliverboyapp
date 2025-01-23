@@ -13,8 +13,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotNull;
 
 
 @Entity
@@ -26,24 +29,33 @@ public class Cliente implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotNull
 	private String nome;
+	@NotNull
 	private Integer telefone;
-	private String cpfOuCnpj;	
-	private long numCartaoCredito;	
-	private String enderecoCliente;	
+	@NotNull
+	private String cpfOuCnpj;
+	@NotNull
+	private long numCartaoCredito;
+	
+	@JsonIgnore
+	@OneToOne
+	@MapsId("cliente_endereco_id")
+	private ClienteEndereco clienteEndereco;	
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	List<Entrega> entrega = new ArrayList<>();
 	
+	public Cliente(){}
 	
-	public Cliente(String nome, Integer telefone,String cpfOuCnpj,long numCartaoCredito,String enderecoCliente) {
+	public Cliente(String nome, Integer telefone,String cpfOuCnpj,long numCartaoCredito){
 		super();		
 		this.nome = nome;
 		this.telefone = telefone;
-		this.cpfOuCnpj = (cpfOuCnpj);		
+		this.cpfOuCnpj = cpfOuCnpj;		
 		this.numCartaoCredito = numCartaoCredito;
-		this.setEnderecoCliente(enderecoCliente);
+		
 	}
 	
 	public long getId() {
@@ -89,15 +101,6 @@ public class Cliente implements Serializable {
 	public void setNumCartaoCredito(long numCartaoCredito) {
 		this.numCartaoCredito = numCartaoCredito;
 	}
-	
-
-	public String getEnderecoCliente() {
-		return enderecoCliente;
-	}
-
-	public void setEnderecoCliente(String enderecoCliente) {
-		this.enderecoCliente = enderecoCliente;
-	}	
 	
 
 	@Override

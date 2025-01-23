@@ -18,8 +18,7 @@ public class ClienteEndereco implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
-		
+	private long id;		
 	@NotNull
 	private String logradouro;
 	@NotNull
@@ -27,18 +26,20 @@ public class ClienteEndereco implements Serializable {
 	@NotNull
 	private String bairro;
 	@NotNull
-	private String pais;	
+	private String pais;
+	@NotNull
 	private Integer numeroResidencia;
 	
+	public ClienteEndereco(){}
 	
-	
-	public ClienteEndereco(long id,String endereco,String logradouro,String cep,String bairro,String pais) {
+	public ClienteEndereco(long id,String logradouro,String cep,String bairro,String pais,Integer numeroResidencia) {
 		super();
 		this.id = id;		
 		this.logradouro = logradouro;
 		this.cep = cep;
 		this.bairro = bairro;
 		this.pais = pais;
+		this.numeroResidencia = numeroResidencia;
 	}
 
 	public long getId() {
