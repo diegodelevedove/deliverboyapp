@@ -49,6 +49,10 @@ public class Moto implements Serializable{
 		this.fotoCaminhoImagem = fotoCaminhoImagem;
 		
 	}
+	
+	public Long getId() {
+		return id;
+	}
 
 	public String getPlaca() {
 		return placa;
@@ -96,10 +100,10 @@ public class Moto implements Serializable{
 
 	public void setFotoCaminhoImagem(String fotoCaminhoImagem) {
 		this.fotoCaminhoImagem = fotoCaminhoImagem;
-	}
+	}	
 
-	public Long getId() {
-		return id;
+	public List<Motoboy> getMotoboy() {
+		return motoboy;
 	}
 
 	@Override

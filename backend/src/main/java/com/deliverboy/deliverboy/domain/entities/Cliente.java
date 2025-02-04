@@ -102,6 +102,9 @@ public class Cliente implements Serializable {
 		this.numCartaoCredito = numCartaoCredito;
 	}
 	
+	public List<Entrega> getEntrega() {
+		return entrega;
+	}
 
 	@Override
 	public int hashCode() {
